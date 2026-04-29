@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 241, 245, 249;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Graph styles */
+.graph-container {
+  @apply w-full h-full bg-slate-50 rounded-xl border border-slate-200;
+}
+
+/* Scrollbar personnalisé */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-slate-100 rounded-full;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full hover:bg-slate-400;
+}
+
+/* Badge statuts */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+/* Card hover effect */
+.card-hover {
+  @apply transition-all duration-200 hover:shadow-md hover:-translate-y-0.5;
+}
+
+/* Fenêtre commande */
+.fenetre-ouverte {
+  @apply bg-green-50 border-green-200 text-green-800;
+}
+.fenetre-fermee {
+  @apply bg-red-50 border-red-200 text-red-800;
+}
+
+/* Node styles pour SVG graph */
+.node-entrepot {
+  fill: #16a34a;
+  stroke: #14532d;
+  stroke-width: 3;
+}
+.node-point {
+  fill: #3b82f6;
+  stroke: #1e40af;
+  stroke-width: 2;
+}
+.node-point-inactif {
+  fill: #94a3b8;
+  stroke: #64748b;
+  stroke-width: 1;
+}
+.node-selected {
+  stroke: #f59e0b;
+  stroke-width: 3;
+}
+.edge-default {
+  stroke: #94a3b8;
+  stroke-width: 1.5;
+}
+.edge-chemin-optimal {
+  stroke: #16a34a;
+  stroke-width: 3;
+  stroke-dasharray: 8 4;
+}
+
+/* Animations */
+@keyframes nodeAppear {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.node-animate {
+  animation: nodeAppear 0.3s ease-out;
+}
