@@ -1,4 +1,15 @@
 // middleware.ts  (à la racine du projet, pas dans /src)
+// ═══════════════════════════════════════════════════════════════════
+// PROTECTION DES ROUTES PAR RÔLE
+// ═══════════════════════════════════════════════════════════════════
+//
+//  Route        │ ADMIN │ OPERATEUR │ CHAUFFEUR │ Non connecté
+//  ─────────────┼───────┼───────────┼───────────┼──────────────
+//  /            │  ✅   │    ✅     │    ✅     │  → /login
+//  /commandes   │  ✅   │    ✅     │    ❌     │  → /login
+//  /livraisons  │  ✅   │    ✅     │    ✅     │  → /login
+//  /admin       │  ✅   │    ❌     │    ❌     │  → /login
+//  /login       │  ✅   │    ✅     │    ✅     │  ✅ (public)
 
 import { withAuth } from 'next-auth/middleware'
 import { NextResponse } from 'next/server'
